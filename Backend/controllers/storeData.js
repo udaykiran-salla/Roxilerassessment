@@ -1,6 +1,6 @@
 const axios = require('axios')
 const Product = require("../models/productModel")
-const { response } = require('express')
+// const { response } = require('express')
 
 
 exports.createData = async(req,res)=>{
@@ -62,7 +62,7 @@ exports.listData = async (req, res) => {
   
       const totalProducts = countResult.length > 0 ? countResult[0].total : 0;
       const totalPages = Math.ceil(totalProducts / perPage);
-  
+      
       res.json({
         products,
         totalProducts,
@@ -231,7 +231,7 @@ exports.completeDetails=async (req,res)=>{
          transectionStatistics=await axios.get(`http://localhost:8000/api/product/transectionStatistics/${month}`)
          bargraph= await axios.get(`http://localhost:8000/api/product/bargraph/${month}`)
          pieChart=await axios.get(`http://localhost:8000/api/product/pieChart/${month}`)
-        
+        console.log(bargraph.data)
         const details ={
             transectionStatistics:transectionStatistics.data,
             bargraph:bargraph.data,
